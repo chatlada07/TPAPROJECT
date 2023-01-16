@@ -1,0 +1,111 @@
+import 'dart:io';
+import 'dart:ui';
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_travel_planning/global/color.dart';
+import 'package:flutter_travel_planning/travel_thailand.dart';
+import 'package:flutter_travel_planning/travel_world.dart';
+
+import 'checklist.dart';
+
+class type_travel extends StatefulWidget {
+  static const routeName = '/home';
+  @override
+  _type_travelState createState() => _type_travelState();
+}
+
+class _type_travelState extends State<type_travel> {
+  List<String> titleList = [
+    'Travel Aboard',
+    'Travel in Thailand',
+  ];
+
+  var pdfPrivacyPolicy = 'assets/pdf/privacypolicy.pdf';
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        backgroundColor: Colors.white,
+        body:
+        Container(
+          child: Stack(
+            children: <Widget>[
+              Column(
+                children: [
+                  const SizedBox(height: 30),
+                  const SizedBox(height: 30),
+                  Expanded(
+                    flex: 10,
+                    child: Container(
+                      padding: EdgeInsets.only(left: 20, right: 20),
+                      width: double.maxFinite,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(15.0),
+                              bottomRight: Radius.circular(15.0))),
+                      child: ListView.builder(
+                          itemCount: titleList.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return GestureDetector(
+                              onTap: () {
+                                _pushPageTravel(context,false,index == 0 ? "" : "th");
+                                // _pushPageChecklist(context,false,index == 0 ? "" : "th");
+                              },
+                              child:
+                              Container(alignment: Alignment.center,
+                              padding: EdgeInsets.only(top:50,bottom:50),
+                            margin: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                            color: AppColors.color_bg_grey_text,
+                            ),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(20),
+                                        child: Text(titleList[index],style: TextStyle(fontSize: 18),),
+                                      )
+                              )
+                            );
+                          }),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+  _pushPageTravel(BuildContext context, bool isHorizontalNavigation,String typeTravel) {
+    if(typeTravel == "th"){
+      Navigator.of(context, rootNavigator: !isHorizontalNavigation).push(
+        _buildAdaptivePageRoute(
+          builder: (context) => travel_thailand("",""),
+          fullscreenDialog: !isHorizontalNavigation,
+        ),
+      ).then((value) {});
+    }else{
+      Navigator.of(context, rootNavigator: !isHorizontalNavigation).push(
+        _buildAdaptivePageRoute(
+          builder: (context) => travel_world("",""),
+          fullscreenDialog: !isHorizontalNavigation,
+        ),
+      ).then((value) {});
+    }
+  }
+  PageRoute<T> _buildAdaptivePageRoute<T>({
+    required WidgetBuilder builder,
+    bool fullscreenDialog = false,
+  }) =>
+      Platform.isAndroid
+          ? MaterialPageRoute(
+        builder: builder,
+        fullscreenDialog: fullscreenDialog,
+      )
+          : CupertinoPageRoute(
+        builder: builder,
+        fullscreenDialog: fullscreenDialog,
+      );
+}

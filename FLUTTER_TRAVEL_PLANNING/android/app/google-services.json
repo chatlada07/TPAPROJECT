@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "759083806817",
+    "firebase_url": "https://travel-planning-ae04a-default-rtdb.firebaseio.com",
+    "project_id": "travel-planning-ae04a",
+    "storage_bucket": "travel-planning-ae04a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:759083806817:android:30d72ce164610f38ea3a20",
+        "android_client_info": {
+          "package_name": "com.example.flutter_travel_planning"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "759083806817-5pbp63e1no9rgq21lpeq36gd9plgodnt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaTfZe-j6s5W5cK6C1QKlnAyWEj8sGZSc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "759083806817-5pbp63e1no9rgq21lpeq36gd9plgodnt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
